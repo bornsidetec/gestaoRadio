@@ -25,16 +25,22 @@
         <form class="col-sm-3 input">
             <p>
             <div class="form-group">
-                <!-- Pesquisa: <input class="form-control ml-2" type="text" /> -->
-                <button type="button" class="btn btn-sm btn-outline-success pull-right" (click)="incluirInterprete()">
-                    Novo
-                </button>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-sm btn-outline-success pull-right"
+                        (click)="incluirInterprete()">
+                        Novo
+                    </button>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="text" name="search" placeholder="Pesquisar..."
+                        [(ngModel)]="pesquisa" />
+                </div>
             </div>
             <p>
         </form>
 
         <table class="table table-hover">
-            <thead class="table-secondary">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
@@ -44,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let interprete of interpretes">
+                <tr *ngFor="let interprete of interpretes | filter: pesquisa">
                     <td scope="row">{{interprete.id}}</td>
                     <td>{{interprete.nome}}</td>
                     <td>

@@ -20,6 +20,7 @@ import { MusicasComponent } from './components/musicas/musicas.component';
 import { MusicaInterpretesComponent } from './components/musicas/musica-interpretes/musica-interpretes.component';
 import { InterpreteMusicasComponent } from './components/interpretes/interprete-musicas/interprete-musicas.component';
 import { InterpreteAlbunsComponent } from './components/interpretes/interprete-albuns/interprete-albuns.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [	
@@ -46,6 +47,7 @@ import { InterpreteAlbunsComponent } from './components/interpretes/interprete-a
     ModalModule.forRoot(),
     HttpClientModule,
     NgxBootstrapIconsModule.pick(allIcons),
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,6 +18,8 @@ export class InterpretesComponent implements OnInit {
   public interpretes: Interprete[];
   public interpreteId: number;
 
+  public pesquisa: string;
+
   openModal(template: TemplateRef<any>, id: number) {
     this.interpreteId = id;
     this.modalRef = this.modalService.show(template);

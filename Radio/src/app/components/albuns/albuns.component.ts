@@ -23,6 +23,8 @@ export class AlbunsComponent implements OnInit {
   public interpretes: Interprete[];
   public albunsInterpretes: AlbunsInterpretes[] = [];
 
+  public pesquisa: string;  
+
   openModal(template: TemplateRef<any>, id: number) {
     this.albumId = id
     this.modalRef = this.modalService.show(template);

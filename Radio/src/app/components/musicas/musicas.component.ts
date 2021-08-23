@@ -23,6 +23,8 @@ export class MusicasComponent implements OnInit {
   public interpretes: Interprete[];
   public musicasInterpretes: MusicasInterpretes[] = [];
 
+  public pesquisa: string;
+
   openModal(template: TemplateRef<any>, id: number) {
     this.musicaId = id;
     this.modalRef = this.modalService.show(template);
