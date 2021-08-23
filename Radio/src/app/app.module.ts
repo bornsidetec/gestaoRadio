@@ -18,7 +18,6 @@ import { AlbumInterpretesComponent } from './components/albuns/album-interpretes
 import { InterpretesComponent } from './components/interpretes/interpretes.component';
 import { MusicasComponent } from './components/musicas/musicas.component';
 import { MusicaInterpretesComponent } from './components/musicas/musica-interpretes/musica-interpretes.component';
-import { AlbumImagemComponent } from './components/albuns/album-imagem/album-imagem.component';
 import { InterpreteMusicasComponent } from './components/interpretes/interprete-musicas/interprete-musicas.component';
 import { InterpreteAlbunsComponent } from './components/interpretes/interprete-albuns/interprete-albuns.component';
 
@@ -26,7 +25,6 @@ import { InterpreteAlbunsComponent } from './components/interpretes/interprete-a
   declarations: [	
     AppComponent,
     AlbunsComponent,
-    AlbumImagemComponent,
     AlbumInterpretesComponent,
     MusicasComponent,
     MusicaInterpretesComponent,

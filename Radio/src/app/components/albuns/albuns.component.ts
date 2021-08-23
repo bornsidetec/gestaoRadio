@@ -16,7 +16,7 @@ export class AlbunsComponent implements OnInit {
 
   public modalRef: BsModalRef;
   public albumForm: FormGroup;
-  public titulo = 'Albuns';
+  public titulo = 'Álbuns';
   public albumSelecionado: Album;
   public albumId: number;
   public albuns: Album[];

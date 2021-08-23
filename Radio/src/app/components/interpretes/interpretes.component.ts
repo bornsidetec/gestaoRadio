@@ -13,7 +13,7 @@ export class InterpretesComponent implements OnInit {
 
   public modalRef: BsModalRef;
   public interpreteForm: FormGroup;
-  public titulo = 'Interpretes';
+  public titulo = 'Intérpretes';
   public interpreteSelecionado: Interprete;
   public interpretes: Interprete[];
   public interpreteId: number;
