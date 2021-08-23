@@ -1,0 +1,24 @@
+<div class="row" *ngIf="musicas.length > 0">
+  <h5>
+    Músicas
+  </h5>
+  <table class="table table-hover">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Ano</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of musicas">
+        <td scope="row">{{l.id}}</td>
+        <td>{{l.nome}}</td>
+        <td>{{l.ano}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row" *ngIf="musicas.length === 0">
+  <p>Nenhum Álbum Vinculado</p>
+</div>

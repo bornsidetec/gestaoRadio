@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-sm-12" *ngIf="interpreteSelecionado">
+        <div class="row">
+            <div>
+                <app-titulo [titulo]="'Interprete: ' + 
+              (interpreteSelecionado.id === 0 ? 'Incluindo' : interpreteSelecionado.id)"></app-titulo>
+            </div>
+        </div>
+
+        <form [formGroup]="interpreteForm" (submit)="interpreteSubmit()">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Nome</label>
+                <input type="text" formControlName=nome class="form-control">
+            </div>
+
+            <div class="formgroup">
+                <button class="btn btn-sm btn-outline-success" [disabled]="!interpreteForm.valid">Confirmar</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="voltar()">Fechar</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="!interpreteSelecionado">
+        <app-titulo [titulo]="titulo"></app-titulo>
+        <form class="col-sm-3 input">
+            <p>
+            <div class="form-group">
+                <!-- Pesquisa: <input class="form-control ml-2" type="text" /> -->
+                <button type="button" class="btn btn-sm btn-outline-success pull-right" (click)="incluirInterprete()">
+                    Novo
+                </button>
+            </div>
+            <p>
+        </form>
+
+        <table class="table table-hover">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Músicas</th>
+                    <th scope="col">Álbuns</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let interprete of interpretes">
+                    <td scope="row">{{interprete.id}}</td>
+                    <td>{{interprete.nome}}</td>
+                    <td>
+                        <button (click)="openModal(musica, interprete.id)"
+                            class="btn btn-sm btn-outline-primary">Músicas</button>
+                    </td>
+                    <td>
+                        <button (click)="openModal(album, interprete.id)"
+                            class="btn btn-sm btn-outline-primary">Álbuns</button>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button (click)="interpreteSelect(interprete)" class="btn btn-sm btn-outline-warning" i-bs
+                                name="pencil"></button>
+                            <button class="btn btn-sm btn-outline-danger" i-bs name="trash"
+                                (click)="excluirInterprete(interprete.id)"></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<ng-template #musica>
+    <div class="modal-body">
+        <app-interprete-musicas [interpreteId]="interpreteId"></app-interprete-musicas>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-danger pull-right" aria-label="Close"
+            (click)="modalRef.hide()">
+            Fechar
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #album>
+    <div class="modal-body">
+        <app-interprete-albuns [interpreteId]="interpreteId"></app-interprete-albuns>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-danger pull-right" aria-label="Close"
+            (click)="modalRef.hide()">
+            Fechar
+        </button>
+    </div>
+</ng-template>

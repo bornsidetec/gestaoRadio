@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-sm-12" *ngIf="musicaSelecionado">
+        <div class="row">
+            <div>
+                <app-titulo [titulo]="'Música: ' + 
+                (musicaSelecionado.id === 0 ? 'Incluindo' : musicaSelecionado.id)"></app-titulo>
+            </div>
+        </div>
+
+        <form [formGroup]="musicaForm" (submit)="musicaSubmit()">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Nome</label>
+                <input type="text" formControlName=nome class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Ano</label>
+                <input type="text" formControlName=ano class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Tempo</label>
+                <input type="text" formControlName=tempo class="form-control">
+            </div>
+
+            <div class="row" *ngIf="musicaSelecionado.id === 0">
+                <div class="row" *ngIf="interpretes">
+                    <div class="row">
+                        <h5>
+                            Interpretes:
+                        </h5>
+                    </div>
+                    <div *ngFor="let interprete of interpretes">
+                        <div class="col-chk">
+                            <input type="checkbox" name="{{interprete.nome}}" [value]="interprete.id"
+                                (change)="addInterprete($event, interprete.id)">
+                            {{interprete.nome}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formgroup">
+                <button class="btn btn-sm btn-outline-success" [disabled]="!musicaForm.valid">Confirmar</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="voltar()">Fechar</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="!musicaSelecionado">
+        <app-titulo [titulo]="titulo"></app-titulo>
+        <form class="col-sm-3 input">
+            <p>
+            <div class="form-group">
+                <!-- Pesquisa: <input class="form-control ml-2" type="text" /> -->
+                <button type="button" class="btn btn-sm btn-outline-success pull-right" (click)="incluirMusica()">
+                    Novo
+                </button>
+            </div>
+            <p>
+        </form>
+
+        <table class="table table-hover">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Tempo</th>
+                    <th scope="col">Detalhes</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let musica of musicas">
+                    <td scope="row">{{musica.id}}</td>
+                    <td>{{musica.nome}}</td>
+                    <td>{{musica.ano}}</td>
+                    <td>{{musica.tempo}}</td>
+                    <td>
+                        <button (click)="openModal(template, musica.id)"
+                            class="btn btn-sm btn-outline-primary">Interpretes</button>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button (click)="musicaSelect(musica)" class="btn btn-sm btn-outline-warning" i-bs
+                                name="pencil"></button>
+                            <button class="btn btn-sm btn-outline-danger" i-bs name="trash"
+                                (click)="excluirMusica(musica.id)"></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<ng-template #template>
+    <div class="modal-body">
+        <app-musica-interpretes [musicaId]="musicaId"></app-musica-interpretes>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-danger pull-right" aria-label="Close"
+            (click)="modalRef.hide()">
+            Fechar
+        </button>
+    </div>
+</ng-template>

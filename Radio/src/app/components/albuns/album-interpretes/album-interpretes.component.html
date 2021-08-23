@@ -1,0 +1,17 @@
+<h5>
+  Interpretes
+</h5>
+<table class="table table-hover">
+  <thead class="table-secondary">
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let interprete of interpretes">
+          <td scope="row">{{interprete.id}}</td>
+          <td>{{interprete.nome}}</td>
+      </tr>
+  </tbody>
+</table>
